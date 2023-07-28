@@ -1,0 +1,65 @@
+int SL=0;
+int SR=0;
+
+char reading;
+void setup()
+{
+  Serial.begin(9600);
+  for (int i=6;i<=9;i++)
+  { pinMode(i,OUTPUT);}
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(10,INPUT);
+  pinMode(11,INPUT);
+}
+
+void loop()
+{
+ if (Serial.available()>0)
+ {
+   reading=Serial.read();
+   switch (reading)
+   {
+     case'F': digitalWrite(4,HIGH);
+              digitalWrite(5,0);
+              digitalWrite(6,HIGH);
+              digitalWrite(7,LOW);
+              analogWrite(10,200);
+              analogWrite(11,200);
+     break;
+     case'B': digitalWrite(4,HIGH);
+              digitalWrite(5,LOW);
+              digitalWrite(6,LOW);
+              digitalWrite(7,LOW);
+              analogWrite(10,200);
+              analogWrite(11,200);
+     break;
+     case'R': digitalWrite(4,0);
+              digitalWrite(5,LOW);
+              digitalWrite(6,HIGH);
+              digitalWrite(7,LOW);
+              analogWrite(10,200);
+              analogWrite(11,0);
+     break;
+     case'L': digitalWrite(4,LOW);
+              digitalWrite(5,LOW);
+              digitalWrite(6,LOW);
+              digitalWrite(7,LOW);
+              analogWrite(10,0);
+              analogWrite(11,200);
+     break;
+      case'S': digitalWrite(4,LOW);
+              digitalWrite(5,LOW);
+              digitalWrite(6,LOW);
+              digitalWrite(7,LOW);
+              analogWrite(10,0);
+              analogWrite(11,0);
+     break;
+   }
+ }
+     
+     
+     
+}
